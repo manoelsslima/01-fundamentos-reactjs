@@ -8,3 +8,8 @@ Use className instead of class attribute, because 'class' is a reserved word for
 .module.css files must be importead with an alias:
 
 import { example } from './file.module.css';
+
+## installed VS Code CSS Modules extension
+
+## installed icon library
+### npm i phosphor-react
