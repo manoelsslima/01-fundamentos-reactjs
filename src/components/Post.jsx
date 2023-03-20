@@ -20,6 +20,15 @@ export function Post() {
                 <p>Acabei de subir mais um projeto pro meu portfólio.</p>
                 <p><a href="#">manoelsslima/novoprojeto</a></p>
             </div>
+
+            <form className={styles.commentForm}>
+                <textarea
+                    placeholder="Deixe um comentário"
+                />
+                <footer>
+                    <button type="submit">Publicar</button>
+                </footer>
+            </form>
         </article>
     )
 }

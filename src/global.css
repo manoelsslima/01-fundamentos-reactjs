@@ -12,6 +12,12 @@
     --green-500: #00875F;
 }
 
+/* retira a marcação de foco de todos os elementos */
+:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--green-500);
+}
+
 * {
     margin: 0;
     padding: 0;
