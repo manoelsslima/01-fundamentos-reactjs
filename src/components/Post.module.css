@@ -123,3 +123,7 @@
     background: var(--green-300);
     transition: background-color 0.1s;
 }
+
+.commentList {
+    margin-top: 2rem;
+}
