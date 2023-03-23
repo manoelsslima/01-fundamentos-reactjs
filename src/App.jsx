@@ -5,6 +5,37 @@ import { Sidebar } from './components/Sidebar';
 import './global.css';
 import styles from './App.module.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: "https://github.com/manoelsslima.png",
+      name: "Manoel Lima",
+      role: "CTO @Vortrix"
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galera!' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto pro meu porfólio' },
+      { type: 'link', content: 'github.com/manoelsslima' },
+    ],
+    publishedAt: new Date('2023-03-23 00:30:00'),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: "https://github.com/diego3g.png",
+      name: "Diego Fernandes",
+      role: "CTO @Rocketseat"
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galera!' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto pro meu porfólio' },
+      { type: 'link', content: 'github.com/manoelsslima' },
+    ],
+    publishedAt: new Date('2023-03-22 23:50:00'),
+  },
+];
+
 export function App() {
   return (
     <div>
@@ -13,14 +44,16 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Manoel Lima"
-            content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius ea, assumenda beatae consequuntur doloribus voluptate qui vel maxime. Sapiente aspernatur ex facilis nisi distinctio esse eum, odio cupiditate sit. Voluptate?"
-          />
-          <Post
-            author="João da Silva"
-            content="Eius ea, assumenda beatae consequuntur doloribus voluptate qui vel maxime."
-          />
+          { posts.map(post => {
+            /* quando o return tem mais de 1 linha, colocar entre parênteses */
+            return (
+              <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            )
+          }) }
         </main>
       </div>
     </div>
