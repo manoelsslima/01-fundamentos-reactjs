@@ -65,8 +65,17 @@ export function Post(props) {
 
     // o componente que tem o estado (useState) é quem deve enviar as funções para
     // os componentes filhos poderem se comunicar com ele
-    function deleteComment(comment) {
-        console.log(`Deletar comentário ${comment}`);
+    function deleteComment(commentToDelete) {
+        //console.log(`Deletar comentário ${comment}`);
+
+        // imutabilidade -> não podemos mudar a lista. Então, criamos uma nova sem o valor
+        // que queremos remover
+        const commentsWithoutDeletedOne = comments.filter(comment => {
+            return comment != commentToDelete;
+        })
+        // atualiza a lista sem o comentário deletado. Não existe remoção por conta da
+        // imutabilidade
+        setComments(commentsWithoutDeletedOne);
     }
 
     return (
