@@ -63,6 +63,12 @@ export function Post(props) {
         setNewCommentText('');
     }
 
+    // o componente que tem o estado (useState) é quem deve enviar as funções para
+    // os componentes filhos poderem se comunicar com ele
+    function deleteComment(comment) {
+        console.log(`Deletar comentário ${comment}`);
+    }
+
     return (
         <article className={styles.post}>
             <header>
@@ -74,7 +80,9 @@ export function Post(props) {
                     </div>
                 </div>
 
-                <time title={publishedDateFormatted} dateTime={props.publishedAt.toISOString()}>
+                <time
+                    title={publishedDateFormatted}
+                    dateTime={props.publishedAt.toISOString()}>
                     {publishedDateRelativeToNow}
                 </time>
             </header>
@@ -103,7 +111,15 @@ export function Post(props) {
 
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return <Comment key={comment} content={comment} />
+                    // passando uma função para o comentário (para que o comentário possa chamá-la
+                    // e excluir o comentário de um componente pai). O nome da propriedade é livre
+                    return (
+                        <Comment
+                            key={comment}
+                            content={comment}
+                            onDeleteComment={deleteComment}
+                        />
+                    )
                 })}
             </div>
         </article>
