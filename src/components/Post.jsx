@@ -33,9 +33,18 @@ export function Post(props) {
     const [newCommentText, setNewCommentText] = useState('')
 
     function handleNewCommentChange() {
+
+        // retornando o estado da validação ao inicial. Caso contrário, após exibir a
+        // mensagem de campo obrigatório, não é possível enviar um novo comentário.
+        event.target.setCustomValidity('');
+
         // target é quem disparou o evento, no caso, o onChange do textarea
         //console.log(event.target.value);
         setNewCommentText(event.target.value);
+    }
+
+    function handleInvalidNewComment() {
+        event.target.setCustomValidity('Este campo é obrigatório.');
     }
 
     const publishedDateFormatted = format(props.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
@@ -112,6 +121,8 @@ export function Post(props) {
                     value={newCommentText}
                     placeholder="Deixe um comentário"
                     onChange={handleNewCommentChange}
+                    onInvalid={handleInvalidNewComment}
+                    required
                 />
                 <footer>
                     <button type="submit">Publicar</button>
