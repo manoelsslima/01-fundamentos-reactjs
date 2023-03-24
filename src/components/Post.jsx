@@ -125,7 +125,7 @@ export function Post(props) {
                     required
                 />
                 <footer>
-                    <button type="submit">Publicar</button>
+                    <button type="submit" disabled={newCommentText.length === 0}>Publicar</button>
                 </footer>
             </form>
 
