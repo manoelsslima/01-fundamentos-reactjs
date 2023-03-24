@@ -25,8 +25,7 @@ export function Post(props) {
     * uma mudança. Passamos o novo valor para a variável comments (imutabilidade).
     */
     const [comments, setComments] = useState([
-        1,
-        2
+      'Post muito bacana, hein?!'
     ])
 
     const publishedDateFormatted = format(props.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
@@ -47,9 +46,17 @@ export function Post(props) {
 
     function handleCreateNewComment() {
         event.preventDefault();
-        //comments.push(3);
+        
+        // event.target = formulário (quem dispara o evento)
+        // event.target.comment = textarea (event.target.<nome_do_componente>)
+        // event.target.comment.value = valor do textarea
+        const newCommentText = event.target.comment.value;
+
         // ... spread operator -> copia o valor da variável para um novo array
-        setComments([...comments, comments.length + 1]);
+        //setComments([...comments, comments.length + 1]);
+        setComments([...comments, newCommentText]);
+        // clear the textarea
+        event.target.comment.value = "";
     }
 
     return (
@@ -80,6 +87,7 @@ export function Post(props) {
 
             <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
                 <textarea
+                    name="comment"
                     placeholder="Deixe um comentário"
                 />
                 <footer>
@@ -89,7 +97,7 @@ export function Post(props) {
 
             <div className={styles.commentList}>
                 {comments.map(comment => {
-                    return <Comment />
+                    return <Comment content={comment} />
                 })}
             </div>
         </article>
