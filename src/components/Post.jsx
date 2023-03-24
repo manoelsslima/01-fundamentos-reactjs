@@ -28,6 +28,16 @@ export function Post(props) {
       'Post muito bacana, hein?!'
     ])
 
+    // importante inicializar o estado com o mesmo tipo de dado.
+    // textarea é texto, então inicializa com texto vazio ''
+    const [newCommentText, setNewCommentText] = useState('')
+
+    function handleNewCommentChange() {
+        // target é quem disparou o evento, no caso, o onChange do textarea
+        //console.log(event.target.value);
+        setNewCommentText(event.target.value);
+    }
+
     const publishedDateFormatted = format(props.publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBr
     });
@@ -46,17 +56,11 @@ export function Post(props) {
 
     function handleCreateNewComment() {
         event.preventDefault();
-        
-        // event.target = formulário (quem dispara o evento)
-        // event.target.comment = textarea (event.target.<nome_do_componente>)
-        // event.target.comment.value = valor do textarea
-        const newCommentText = event.target.comment.value;
-
         // ... spread operator -> copia o valor da variável para um novo array
         //setComments([...comments, comments.length + 1]);
+        // agora, o newCommentText está com o valor armazenado pelo estado criado newCommentText
         setComments([...comments, newCommentText]);
-        // clear the textarea
-        event.target.comment.value = "";
+        setNewCommentText('');
     }
 
     return (
@@ -88,7 +92,9 @@ export function Post(props) {
             <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
                 <textarea
                     name="comment"
+                    value={newCommentText}
                     placeholder="Deixe um comentário"
+                    onChange={handleNewCommentChange}
                 />
                 <footer>
                     <button type="submit">Publicar</button>
