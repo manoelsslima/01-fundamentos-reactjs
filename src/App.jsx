@@ -46,8 +46,10 @@ export function App() {
         <main>
           { posts.map(post => {
             /* quando o return tem mais de 1 linha, colocar entre parênteses */
+            /* todo elemento iterable deve ter um atributo key único */
             return (
               <Post
+                key={post.id}
                 author={post.author}
                 content={post.content}
                 publishedAt={post.publishedAt}
