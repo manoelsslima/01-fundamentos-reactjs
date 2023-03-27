@@ -19,8 +19,27 @@ export function Comment(props) {
         cada renderização. A renderização altera o estado, o estado força a renderização
         e entra em loop.
      */
+
+    /*
+    quando for atualizar uma informação e essa informação depender do valor anterior,
+    deve-se usar uma função para fazê-lo.
+    
+    // para atualizar "likes", preciso do valor anterior de "likes", então, uso uma função
+    // para poder incrementá-lo
     function handleLikeComment() {
-        setLikeCount(likeCount + 1);
+        setLikeCount((myNewVariable) => {
+            return myNewVariable + 1
+        })
+    }
+    */
+    // esse método também funciona
+    // function handleLikeComment() {
+    //     setLikeCount(likeCount + 1);
+    // }
+    function handleLikeComment() {
+        setLikeCount((stateOfLike) => {
+            return stateOfLike + 1
+        })
     }
 
     return (
