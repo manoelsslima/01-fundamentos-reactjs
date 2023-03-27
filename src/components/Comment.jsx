@@ -13,6 +13,12 @@ export function Comment(props) {
        props.onDeleteComment(props.content);
     }
 
+    /* é possível criar uma arrow function diretamente na chamada do método:
+        () => setLikeCount(likeCount + 1)
+        Se chamar diretamente o setLikeCount() estará fazendo a chamada da função a
+        cada renderização. A renderização altera o estado, o estado força a renderização
+        e entra em loop.
+     */
     function handleLikeComment() {
         setLikeCount(likeCount + 1);
     }
